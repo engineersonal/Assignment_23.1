@@ -1,0 +1,42 @@
+<!--React and Babel CDN scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+
+<div id="root"></div>
+<script type="text/babel">
+{/*Parent User Component from which userlist will be passed to Users Child Component */}
+   class User extends React.Component{    
+    constructor(){
+        super();
+        this.userlist = [{Name: "Sonal", Age: "35"},{Name:"Kiran", Age:"35"}];
+    }
+   
+    render(){
+        return(<div>        
+            <h2>User Parent Component </h2>
+            <ul>{
+             this.userlist.map(item => 
+                <Users key={item.Name} name={item.Name} age={item.Age}/>
+             )}
+            </ul>
+            <br/>
+        </div>
+    );
+    }
+}
+{/*Users Child Component displaying props userlist passed from parent component User*/}
+class Users extends React.Component{
+    render(){
+        return(<div>
+            <h2>User List Child Component</h2>
+            <br/> 
+                <li>Name: {this.props.name}</li>
+                <li>Age: {this.props.age}</li>
+        </div>);
+    }
+}  
+
+    ReactDOM.render( <User />, document.getElementById("root"));
+</script>
